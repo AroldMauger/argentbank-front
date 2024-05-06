@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client'
 import HomePage from './pages/HomePage/HomePage.jsx';
 import SignIn from './pages/SignIn/SignIn.jsx'
 import NotFound404 from './components/NotFound404/NotFound404.jsx';
+
+import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
+import UserPage from './pages/UserPage/UserPage.jsx';
 import Header from './layout/Header/Header.jsx';
 import Footer from './layout/Footer/Footer.jsx';
 
-import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
-
-{/*Ici on crée un Layout pour une mise en page uniforme.*/}
 
 const HeaderFooterLayout = () => {
   return <>
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/user",
-       // element: 
+        element: <UserPage/>
       },
     ],
   },
