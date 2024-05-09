@@ -1,35 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '/public/css/main.scss';
+import { Link } from 'react-router-dom';
 
 function Header() {
-  // On récupère l'URL
-  const currentUrl = window.location.pathname;
+  //const [user, setUser] = useState(getUser())  
 
-  // On vérifie si l'URL contient "/user"
-  const isUserPage = currentUrl.includes('/user');
+ // const handleLogout = () => {
+  //  localStorage.removeItem('user');
+ //   setUser(null);
+ // }
 
   return (
     <nav className="main-nav">
-      <a className="main-nav-logo" href="./">
+      <Link className="main-nav-logo" to="/">
         <img
           className="main-nav-logo-image"
           src="./img/argentBankLogo.png"
           alt="Argent Bank Logo"
         />
         <h1 className="sr-only">Argent Bank</h1>
-      </a>
+      </Link>
       <div>
-        <a className="main-nav-item" href="/sign-in">
-          <i className="fa fa-user-circle"></i>
-          Sign In
-        </a>
-
-        {isUserPage && (
-          <a className="main-nav-item" href="/">
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-          </a>
-        )}
+      {/* {!user ? (*/}   
+          <Link className="main-nav-item" to="/sign-in">
+            <i className="fa fa-user-circle"></i>
+            Sign In
+          </Link>
+       {/* ) : ( (*/} 
+          <>
+            <Link className="main-nav-item" to="/" > {/*onClick={handleLogout} */}
+              <i className="fa fa-sign-out"></i>
+              Sign Out
+            </Link>
+          </>
+        {/* )} (*/} 
       </div>
     </nav>
   );

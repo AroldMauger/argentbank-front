@@ -8,6 +8,8 @@ import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 import UserPage from './pages/UserPage/UserPage.jsx';
 import Header from './layout/Header/Header.jsx';
 import Footer from './layout/Footer/Footer.jsx';
+import { Provider } from 'react-redux';
+import store from './Store/Store.jsx';
 
 
 const HeaderFooterLayout = () => {
@@ -38,10 +40,13 @@ const router = createBrowserRouter([
   },
 ]);
 
+// On entoure toute notre App avec le Provider de Redux.
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
-  <RouterProvider router={router} />
+  <Provider store={store}>   
+      <RouterProvider router={router} />
+  </Provider>
 
 )
 
