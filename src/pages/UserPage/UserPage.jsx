@@ -6,13 +6,13 @@ import { useSelector } from 'react-redux';
 function UserPage() {
   const auth = useSelector(state => state.auth); 
   const user = auth.user;
-
+  const loggedInUser = user.loggedInUser
   return (
     <main className="main bg-dark">
-      <WelcomeUser firstname={user.firstName} lastname={user.lastName}/>
+      <WelcomeUser firstname={loggedInUser.firstName} lastname={loggedInUser.lastName}/>
       
       {/* On utilise .map sur le tableau de transactions depuis le state */}
-      {user.transactions.map((transaction, index) => (
+      {loggedInUser.transactions.map((transaction, index) => (
         <Transaction
           key={index}
           accountType={transaction.accountType}

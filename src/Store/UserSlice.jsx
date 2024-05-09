@@ -21,9 +21,10 @@ export const loginUser = createAsyncThunk(
             localStorage.setItem('auth', JSON.stringify(data));
 
             // On récupère les infos utilisateur à partir du userdata.json
-            const loggedInUser = userData.find(user => user.email === userCredentials.email);
+            const loggedInUser =  userData.find(user => user.email === userCredentials.email)
 
-            return loggedInUser;
+            return {data, loggedInUser} // On renvoie data pour accéder au token et loggedInUser pour accéder aux données mockées
+
         } catch (error) {
             throw error;
         }
@@ -36,6 +37,7 @@ const userSlice = createSlice({
     initialState: {
         loading: false,
         user: null,
+        token: null, 
         error: null
     },
     extraReducers: (builder) => {
@@ -44,18 +46,21 @@ const userSlice = createSlice({
             .addCase(loginUser.pending, (state) => {
                 state.loading = true;
                 state.user = null;
+                state.token = null; 
                 state.error = null;
             })
         // En cas de succès
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.loading = false;
                 state.user = action.payload;
+                state.token = action.payload.token;
                 state.error = null;
             })
         // En cas d'erreur
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false;
                 state.user = null;
+                state.token = null;
                 console.log(action.error.message);
                 if (action.error.message === "Request failed with status code 401") {
                     state.error = 'Access Denied! Invalid Credentials';
