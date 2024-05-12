@@ -1,5 +1,5 @@
 import React from 'react'
-import "/public/css/main.scss";
+import "./transaction.scss";
 
 function Transaction(props) {
   return (

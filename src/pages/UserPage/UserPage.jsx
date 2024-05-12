@@ -2,6 +2,7 @@ import React from 'react';
 import WelcomeUser from '../../components/WelcomeUser/WelcomeUser.jsx';
 import Transaction from '../../components/Transaction/Transaction.jsx';
 import { useSelector } from 'react-redux';
+import "./userpage.scss"
 
 function UserPage() {
   const auth = useSelector(state => state.auth); 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "/public/css/main.scss";
+import "./signinform.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../Store/UserSlice.jsx';
 import { useNavigate } from 'react-router-dom';

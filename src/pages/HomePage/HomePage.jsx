@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeBanner from '../../components/HomeBanner/HomeBanner.jsx'
-import "/public/css/main.scss";
+import "./homepage.scss";
 import HomeFeatures from '../../components/HomeFeatures/HomeFeatures.jsx';
 
 

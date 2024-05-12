@@ -1,5 +1,5 @@
 import React from 'react'
-import "/public/css/main.scss";
+import "./signin.scss";
 import SignInForm from '../../components/SignInForm/SignInForm.jsx';
 
 function SignIn() {
