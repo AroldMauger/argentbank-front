@@ -9,7 +9,7 @@ import UserPage from './pages/UserPage/UserPage.jsx';
 import Header from './layout/Header/Header.jsx';
 import Footer from './layout/Footer/Footer.jsx';
 import { Provider } from 'react-redux';
-import store from './Store/Store.jsx';
+import store from './redux/store.jsx';
 
 
 const HeaderFooterLayout = () => {
