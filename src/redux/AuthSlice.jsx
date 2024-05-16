@@ -1,51 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authThunk } from "./AuthThunk.jsx";
-
-//On définit l'état initial pour l'authentification
+import { authThunk, fetchUserProfile } from "./AuthThunk.jsx";
 
 const initialState = {
-    isConnected: false,
-    isLoading:false,
-    token: null,
-    error: null
-}
+  token: null,
+  userId: null,
+  firstName: null,
+  lastName: null,
+};
 
 const authSlice = createSlice({
-    name: 'auth',
-    initialState,
-    reducers: {
-        //On définit les états pour la déconnexion
-        logout(state) { 
-            state.isConnected = false;
-            state.isLoading = false;
-            state.token = null;
-            state.error = null;
-        },
-        },
-        extraReducers: (builder) => {
-        builder
-        //En cas de chargement
-        .addCase(authThunk.pending, (state) => {
-            state.isConnected = false;
-            state.isLoading = true;
-            state.token = null;
-            state.error = null;
-            })
-        //En cas de succès
-        .addCase(authThunk.fulfilled, (state, action) => {
-            state.isConnected = true;
-            state.isLoading = false;
-            state.token = action.payload.body.token;
-            state.error = null;
-        })
-        //En cas d'erreur
-        .addCase(authThunk.rejected, (state, action) => {
-            state.isConnected = false;
-            state.isLoading = false;
-            state.token = null;
-            state.error = action.payload;
-        });
-     },
+  name: 'auth',
+  initialState,
+  reducers: {
+    logout(state) {
+      state.token = null;
+      state.userId = null;
+      state.firstName = null;
+      state.lastName = null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(authThunk.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+      })
+      .addCase(authThunk.rejected, (state) => {
+        state.token = null;
+      })
+      .addCase(fetchUserProfile.fulfilled, (state, action) => {
+        state.userId = action.payload.id;
+        state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
+      })
+      .addCase(fetchUserProfile.rejected, (state) => {
+        state.userId = null;
+        state.firstName = null;
+        state.lastName = null;
+      });
+  },
 });
 
 export const { logout } = authSlice.actions;

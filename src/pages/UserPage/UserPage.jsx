@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import WelcomeUser from '../../components/WelcomeUser/WelcomeUser.jsx';
 import Transaction from '../../components/Transaction/Transaction.jsx';
-import { useSelector } from 'react-redux';
-import "./userpage.scss"
+import { useSelector, useDispatch } from 'react-redux';
+import "./userpage.scss";
+import { fetchUserProfile } from '../../redux/AuthThunk.jsx';
+import { userData } from "../../data/userdata.js";
 
 function UserPage() {
-  const auth = useSelector(state => state.auth); 
-  const user = auth.user;
-  const loggedInUser = user.loggedInUser
+  const dispatch = useDispatch();
+  const { token, userId, firstName, lastName } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchUserProfile(token));
+    }
+  }, [token, dispatch]);
+
+  // On filtre les données de transactions en fonction de l'userId
+  const user = userData.find(user => user.userId === userId);
+  const transactions = user ? user.transactions : [];
+
   return (
     <main className="main bg-dark">
-      <WelcomeUser firstname={loggedInUser.firstName} lastname={loggedInUser.lastName}/>
+      <WelcomeUser 
+        firstname={firstName} 
+        lastname={lastName}
+      />
       
-      {/* On utilise .map sur le tableau de transactions depuis le state */}
-      {loggedInUser.transactions.map((transaction, index) => (
+      {transactions.map((transaction, index) => (
         <Transaction
           key={index}
           accountType={transaction.accountType}
