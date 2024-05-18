@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUser, getUserProfile } from "../service.jsx";
+import { loginUser, getUserProfile, updateUserProfile } from "../service.jsx";
 
 //  pour l'authentification
 export const authThunk = createAsyncThunk(
@@ -21,6 +21,19 @@ export const fetchUserProfile = createAsyncThunk(
     try {
       const profileData = await getUserProfile(token);
       return profileData;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const updateUserData = createAsyncThunk(
+  'auth/updateUserData',
+  async ({ token, firstName, lastName }, { rejectWithValue }) => {
+    try {
+      const data = await updateUserProfile(token, firstName, lastName);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

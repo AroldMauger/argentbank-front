@@ -17,6 +17,7 @@ export const loginUser = async (email, password) => {
   return data.body; // On retourne uniquement le body qui contient le token
 };
 
+//Appel à l'API pour obtenir les données utilisateur depuis la base de données
 
 export const getUserProfile = async (token) => {
   const response = await fetch(`http://localhost:3001/api/v1/user/profile`, {
@@ -33,4 +34,22 @@ export const getUserProfile = async (token) => {
 
   const data = await response.json();
   return data.body; // On retourne uniquement le body qui contient les informations de l'utilisateur
+};
+
+
+//Appel à l'API pour modifier nom et prénom de l'utilisateur
+export const updateUserProfile = async (token, firstName, lastName) => {
+  const response = await fetch(`http://localhost:3001/api/v1/user/profile`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ firstName, lastName }),
+  });
+  if (!response.ok) {
+    throw new Error(`Echec dans la mise à jour des données.`);
+  }
+  const data = await response.json();
+  return data;
 };

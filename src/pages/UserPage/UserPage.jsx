@@ -22,10 +22,7 @@ function UserPage() {
 
   return (
     <main className="main bg-dark">
-      <WelcomeUser 
-        firstname={firstName} 
-        lastname={lastName}
-      />
+      <WelcomeUser />
       
       {transactions.map((transaction, index) => (
         <Transaction

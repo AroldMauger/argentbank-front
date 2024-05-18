@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authThunk, fetchUserProfile } from "./AuthThunk.jsx";
+import { authThunk, fetchUserProfile, updateUserData } from "./AuthThunk.jsx";
 
 const initialState = {
   token: null,
@@ -23,6 +23,8 @@ const authSlice = createSlice({
     builder
       .addCase(authThunk.fulfilled, (state, action) => {
         state.token = action.payload.token;
+        state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
       })
       .addCase(authThunk.rejected, (state) => {
         state.token = null;
@@ -36,6 +38,10 @@ const authSlice = createSlice({
         state.userId = null;
         state.firstName = null;
         state.lastName = null;
+      })
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        state.firstName = action.payload.body.firstName; // attention, ici on va chercher dans le body
+        state.lastName = action.payload.body.lastName;
       });
   },
 });

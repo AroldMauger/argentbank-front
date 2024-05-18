@@ -4,9 +4,50 @@
     color: #fff;
     font-weight: bold;
     padding: 10px;
+    cursor: pointer;
   }
   
   .header {
     color: #fff;
     margin-bottom: 2rem;
+  }
+
+  .edit-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:25px;
+  }
+
+  .inputs-form {
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+  }
+
+  .input-username {
+    padding:10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+
+  .btn-editform {
+    width: 60%;
+    font-size: 16px;
+    padding: 6px;
+  }
+
+  .save-block {
+    align-items: end;
+  }
+  
+  .save-btn:hover {
+    background-color: #00bc77;
+    cursor: pointer;
+    color:white;
+  }
+
+  .cancel-btn:hover {
+    opacity: 0.8;
   }
