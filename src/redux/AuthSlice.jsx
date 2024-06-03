@@ -2,10 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { authThunk, fetchUserProfile, updateUserData } from "./AuthThunk.jsx";
 
 const initialState = {
-  token: null,
-  userId: null,
-  firstName: null,
-  lastName: null,
+  token: null
 };
 
 const authSlice = createSlice({

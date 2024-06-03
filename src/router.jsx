@@ -10,6 +10,7 @@ import Header from './layout/Header/Header.jsx';
 import Footer from './layout/Footer/Footer.jsx';
 import { Provider } from 'react-redux';
 import store from './redux/store.jsx';
+import Guard from './components/Guard/Guard.jsx';
 
 
 const HeaderFooterLayout = () => {
@@ -33,8 +34,14 @@ const router = createBrowserRouter([
         element: <SignIn/>
       },
       {
-        path: "/user",
-        element: <UserPage/>
+        path: "/",
+        children :[
+          {
+            path: "/user",
+            element: <UserPage/>
+          }
+        ],
+        element: <Guard/>  // permet de sécuriser les routes privées
       },
     ],
   },
