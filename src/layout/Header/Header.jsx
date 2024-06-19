@@ -34,7 +34,8 @@ function Header() {
               {firstName}
             </Link>
             
-            <Link className="main-nav-item" to="/" onClick={handleLogout}> {/*On ajoute la fonction logout pour réinitialiser le state */}
+            <Link className="main-nav-item" to="/" onClick={handleLogout}> 
+            {/*On ajoute la fonction logout pour réinitialiser le state */}
               <i className="fa fa-sign-out"></i>
               Sign Out
             </Link>
