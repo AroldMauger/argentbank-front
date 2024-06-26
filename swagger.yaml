@@ -295,12 +295,11 @@ definitions:
     properties:
       category:
         type: string
-        enum:
-          - null
+        description : Nullable.
       notes:
         type: string
-        enum: 
-          - null
+        description : Nullable.
+
 
   TransactionsResponse:
     type: object  
