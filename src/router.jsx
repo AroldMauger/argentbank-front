@@ -26,18 +26,18 @@ const router = createBrowserRouter([
     errorElement: <NotFound404/>, 
     children :[
       {
-        path: "/",
+        path: "/argentbank-front",
         element: <HomePage/>
       },
       {
-        path: "/sign-in",
+        path: "/argentbank-front/sign-in",
         element: <SignIn/>
       },
       {
-        path: "/",
+        path: "/argentbank-front",
         children :[
           {
-            path: "/user",
+            path: "/argentbank-front/user",
             element: <UserPage/>
           }
         ],

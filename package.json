@@ -1,7 +1,7 @@
 {
   "name": "argentbank-front",
   "private": true,
-  "homepage" : "https://AroldMauger.github.io/argentbank-front",
+  "homepage" : "https://aroldmauger.github.io/argentbank-front/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
